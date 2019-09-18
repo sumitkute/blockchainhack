@@ -57,31 +57,31 @@
 		<table style="width:100%">
 			<tr>
 			  <td>Retail Contract Address</td>
-			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x028f7c7d5e621591bc05da51e4da278722f281d9"></td>
+			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x08168f4158c3142abc7572a41ce5c4456ad95fa0"></td>
 			</tr>
 			<tr>
 			  <td>Unilever</td>
-			  <td><input id="Unilever" size="100" type="text" value="0x427887ff482cf5827f746f01450d9ca1e62be165"></td>
-			  <td><input id="EndPointUnilever" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
-			  <td><input id="UnileverPassword" size="100" type="password" value="1234"></td>
+			  <td><input id="Unilever" size="100" type="text" value="0xfb4857e55d1d34c33a27e5a4717084adb7653f38"></td>
+			  <td><input id="EndPointUnilever" size="100" type="text" value="https://t1unilever.blockchain.azure.com:3200/SnjEwx7YeB8177LqismByDbS"></td>
+			  <td><input id="UnileverPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			<tr>
 			  <td>Retailer</td>
-			  <td><input id="Retailer" size="100" type="text" value="0x0606fbbb9d02695855190a58695af3c05349bf15"></td>
-			  <td><input id="EndPointRetailer" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
-			  <td><input id="RetailerPassword" size="100" type="password" value="1234"></td>
+			  <td><input id="Retailer" size="100" type="text" value="0x10a255c3c6aced5f77a0a5d5deb1d6c07c290505"></td>
+			  <td><input id="EndPointRetailer" size="100" type="text" value="https://t1retailer.blockchain.azure.com:3200/0pqAY3DkNjy0wyygwEdXpZMX"></td>
+			  <td><input id="RetailerPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			<tr>
 				<td>Bank</td>
-				<td><input id="Bank"  size="100" type="text" value="0x035b0dfbaa9456881083e5439246c82a4512f6bd"></td>
-				<td><input id="EndPointBank" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
-				<td><input id="BankPassword" size="100" type="password" value="1234"></td>
+				<td><input id="Bank"  size="100" type="text" value="0x92189e0a014e4a02f587720143aca65de89b1257"></td>
+				<td><input id="EndPointBank" size="100" type="text" value="https://t1bank.blockchain.azure.com:3200/8EJPi2lg9FZmtd8o_tcS7aWy"></td>
+				<td><input id="BankPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			  <tr>
 				<td>Distributor</td>
-				<td><input id="Distributor"  size="100" type="text" value="0x23679c8955eedbec7964eebf17c21f0e799ab05d"></td>
-				<td><input id="EndPointDistributor" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
-				<td><input id="DistributorPassword" size="100" type="password" value="1234"></td>
+				<td><input id="Distributor"  size="100" type="text" value="0x95c8dca3af6720f80b18548130df6ba3a3084ac4"></td>
+				<td><input id="EndPointDistributor" size="100" type="text" value="https://t1distributor.blockchain.azure.com:3200/Jmh0mpt1cELlPpdeL858hI4_"></td>
+				<td><input id="DistributorPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			  <tr>
 				<td colspan="2"><button id="SaveConfig">Save</button></td>
@@ -131,10 +131,10 @@
 				<td>Price</td>
 				<td><label id="loprice"></label></td>
 			  </tr>
-			  <tr>
+			  <!-- <tr>
 				<td>Total</td>
 				<td><label id="lototal"></label></td>
-			  </tr>
+			  </tr> -->
 			  <tr>
 				<td>State</td>
 				<td><label id="lostate"></label></td>
@@ -152,26 +152,26 @@
 			  <td><input id="lcdiscount" type="text"></td>
 			</tr>
 			<tr>
-			  <td><button id="Calculate">Calculate</button></td>
-			  <td><button id="CheckCredit">CheckCredit</button></td>
+			  <td><button id="Calculate" disabled>Calculate</button></td>
+			  <td><button id="CheckCredit" disabled>CheckCredit</button></td>
 			</tr>
 		</table>		
 		
 		<p><h2>Status :  &nbsp  <span id="lcordId"></span></h2></p>
 		<hr>
 		<p>Credit Limit : &nbsp <input id="lccreditLimit" type="text"></p>
-		<button id="ApproveCredit">ApproveCredit</button>
+		<button id="ApproveCredit" disabled>ApproveCredit</button>
 		<hr>
 		<table style="width:100%">
 			<tr>
-			  <td><button id="PlaceOrder">PlaceOrder</button></td>
-			  <td><button id="OrderReady">OrderReady</button></td>
-			  <td><button id="TransferMoney">TransferMoney</button></td>
+			  <td><button id="PlaceOrder" disabled>PlaceOrder</button></td>
+			  <td><button id="OrderReady" disabled>OrderReady</button></td>
+			  <td><button id="TransferMoney" disabled>TransferMoney</button></td>
 			</tr>
 			<tr>
-			  <td><button id="DeliverOrder">DeliverOrder</button></td>
-			  <td><button id="CheckOrder">CheckOrder</button></td>
-			  <td><button id="CloseOrder">CloseOrder</button></td>
+			  <td><button id="DeliverOrder" disabled>DeliverOrder</button></td>
+			  <td><button id="CheckOrder" disabled>CheckOrder</button></td>
+			  <td><button id="CloseOrder" disabled>CloseOrder</button></td>
 			</tr>
 		</table>	
     </div>
@@ -504,7 +504,7 @@
 			var retailerrweb3;
 
 			var myunilevercontract;
-			var mydistributorcontract
+			var mydistributorcontract;
 			var mybankcontract;
 			var myretailercontract;
 			// $('#checkBalance').click(function() {
@@ -516,21 +516,21 @@
 			// });
 			
 			$('#SaveConfig').click(function() {
-				addr = $('#contractaddress').val();	
-				unileveraccount = 	$('#Unilever').val();
-				distributoraccount = 	$('#Distributor').val();
-				bankaccount = 	$('#Bank').val();
-				retaileraccount = 	$('#Retailer').val();
+				addr = $('#contractaddress').val().trim();	
+				unileveraccount = 	$('#Unilever').val().trim();
+				distributoraccount = 	$('#Distributor').val().trim();
+				bankaccount = 	$('#Bank').val().trim();
+				retaileraccount = 	$('#Retailer').val().trim();
 				
-				unileveraccountpass = 	$('#UnileverPassword').val();
-				distributoraccountpass = 	$('#DistributorPassword').val();
-				bankaccountpass = 	$('#BankPassword').val();
-				retaileraccountpass = 	$('#RetailerPassword').val();
+				unileveraccountpass = 	$('#UnileverPassword').val().trim();
+				distributoraccountpass = 	$('#DistributorPassword').val().trim();
+				bankaccountpass = 	$('#BankPassword').val().trim();
+				retaileraccountpass = 	$('#RetailerPassword').val().trim();
 				
-				endPointUnilever = $('#EndPointUnilever').val();
-				endPointdistributor = 	$('#EndPointDistributor').val();
-				endPointbank = 	$('#EndPointBank').val();
-				endPointretailer = 	$('#EndPointRetailer').val();
+				endPointUnilever = $('#EndPointUnilever').val().trim();
+				endPointdistributor = 	$('#EndPointDistributor').val().trim();
+				endPointbank = 	$('#EndPointBank').val().trim();
+				endPointretailer = 	$('#EndPointRetailer').val().trim();
 				
 				if (typeof web3 !== 'undefined') {
 						web3 = new Web3(web3.currentProvider);
@@ -617,8 +617,9 @@
 						console.log( "Transaction error" ,error);
 					}
 					else{
-						var txn_hash = result; //Get transaction hash
+						var txn_hash = result.transactionHash; //Get transaction hash
 						$('#ordId').text(txn_hash);
+						$("#Calculate").attr("disabled", false);
 					}
 				});
 			});
@@ -629,8 +630,14 @@
 				var _discount = $('#lcdiscount').val();
 				const tx = {from: distributoraccount,to: addr,
 				gas: 45000000,data: mydistributorcontract.methods.Calculate(_id,_price,_discount).encodeABI()};
-				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Discount Applied');
+				distrubutorweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#Calculate").attr("disabled", true);
+						$("#CheckCredit").attr("disabled", false);
+						$('#lcordId').text('Discount Applied');
+					}
 				});
 			});
 			$('#CheckCredit').click(function() {
@@ -638,8 +645,14 @@
 				var _id = $('#orderId').val();
 				const tx = {from: distributoraccount,to: addr,
 				gas: 45000000,data: mydistributorcontract.methods.CheckCredit(_id).encodeABI()};
-				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Send to Bank');
+				distrubutorweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#CheckCredit").attr("disabled", true);
+						$("#ApproveCredit").attr("disabled", false);
+						$('#lcordId').text('Send to Bank');
+					}
 				});
 			});
 			$('#ApproveCredit').click(function() {
@@ -648,8 +661,14 @@
 				var _creditlimit = $('#lccreditLimit').val();
 				const tx = {from: bankaccount,to: addr,
 				gas: 45000000,data: mybankcontract.methods.ApproveCredit(_id,_creditlimit).encodeABI()};
-				bankweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Credit Approved');
+				bankweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#ApproveCredit").attr("disabled", true);
+						$("#PlaceOrder").attr("disabled", false);
+						$('#lcordId').text('Credit Approved');
+					}
 				});
 			});
 			$('#PlaceOrder').click(function() {
@@ -657,8 +676,14 @@
 				var _id = $('#orderId').val();
 				const tx = {from: distributoraccount,to: addr,
 				gas: 45000000,data: mydistributorcontract.methods.PlaceOrder(_id).encodeABI()};
-				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Order Placed');
+				distrubutorweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#PlaceOrder").attr("disabled", true);
+						$("#OrderReady").attr("disabled", false);
+						$('#lcordId').text('Order Placed');
+					}
 				});
 			});
 			$('#OrderReady').click(function() {
@@ -666,8 +691,14 @@
 				var _id = $('#orderId').val();
 				const tx = {from: unileveraccount,to: addr,
 				gas: 45000000,data: myunilevercontract.methods.OrderReady(_id).encodeABI()};
-				unileverweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Order Ready');
+				unileverweb3.eth.sendTransaction(tx).then(function(result, error)  {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#OrderReady").attr("disabled", true);
+						$("#TransferMoney").attr("disabled", false);
+						$('#lcordId').text('Order Ready');
+					}
 				});
 			});
 			$('#TransferMoney').click(function() {
@@ -675,8 +706,14 @@
 				var _id = $('#orderId').val();
 				const tx = {from: bankaccount,to: addr,
 				gas: 45000000,data: mybankcontract.methods.TransferMoney(_id).encodeABI()};
-				bankweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Order Amount Transfered to Distributor');
+				bankweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#TransferMoney").attr("disabled", true);
+						$("#DeliverOrder").attr("disabled", false);
+						$('#lcordId').text('Order Amount Transfered to Distributor');
+					}
 				});
 			});
 			$('#DeliverOrder').click(function() {
@@ -684,8 +721,14 @@
 				var _id = $('#orderId').val();
 				const tx = {from: distributoraccount,to: addr,
 				gas: 45000000,data: mydistributorcontract.methods.DeliverOrder(_id).encodeABI()};
-				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Order Delivered to Retailer');
+				distrubutorweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#DeliverOrder").attr("disabled", true);
+						$("#CheckOrder").attr("disabled", false);
+						$('#lcordId').text('Order Delivered to Retailer');
+					}
 				});
 			});
 			$('#CheckOrder').click(function() {
@@ -693,8 +736,14 @@
 				var _id = $('#orderId').val();
 				const tx = {from: retaileraccount,to: addr,
 				gas: 45000000,data: myretailercontract.methods.CheckOrder(_id).encodeABI()};
-				retailerrweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Order Verified');
+				retailerrweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#CheckOrder").attr("disabled", true);
+						$("#CloseOrder").attr("disabled", false);
+						$('#lcordId').text('Order Verified');
+					}
 				});
 			});
 			$('#CloseOrder').click(function() {
@@ -702,8 +751,13 @@
 				var _id = $('#orderId').val();
 				const tx = {from: unileveraccount,to: addr,
 				gas: 45000000,data: myunilevercontract.methods.CloseOrder(_id).encodeABI()};
-				unileverweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Order Closed..Hurahhh');
+				unileverweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#CloseOrder").attr("disabled", true);
+						$('#lcordId').text('Order Closed..Hurahhh');
+					}
 				});
 			});
 			$('#FetchOrder').click(function() {
@@ -715,41 +769,133 @@
 					$('#loitem').text(data.itemname);
 					$('#loqty').text(data.quantity);
 					$('#loprice').text(data.price);
-					$('#lototal').text(data.total);
-					$('#lostate').text(data.State);
+					//$('#lototal').text(data.total);
+					switch(data.State) {
+							case "0":
+								{
+									$('#lostate').text("Order Created");
+									$("#Calculate").attr("disabled", false);
+									$("#CheckCredit").attr("disabled", true);
+								}
+								break;
+								case "1":
+								{
+									$('#lostate').text("Pending Credit Check");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", false);
+								}
+								break;
+								case "2":
+								{
+									$('#lostate').text("Send to Bank");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", false);
+								}
+								break;
+								case "3":
+								{
+									$('#lostate').text("Credit Approved");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", false);
+								}
+								break;
+								case "4":
+								{
+									$('#lostate').text("Order Placed");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", false);
+								}
+								break;
+								case "5":
+								{
+									$('#lostate').text("Order Ready");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", false);
+								}
+								break;
+								case "6":
+								{
+									$('#lostate').text("Order Amount Received");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", false);
+								}
+									break;
+								case "7":
+								{	
+									$('#lostate').text("Order Delivered");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", false);
+								}
+								break;
+								case "8":
+								{
+									$('#lostate').text("Order Verified");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", false);
+								}
+								break;
+								case "9":
+								{
+									$('#lostate').text("Order Closed");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", true);
+								}
+								break;
+								case "10":
+								{
+									$('#lostate').text("Order Terminated");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", true);
+								}
+								break;
+								default:
+									$('#lostate').text("No Status Found");
+							}
 				});
 			});
-			/* Transfer */
-			// $('#Transfer').click(function() {
-			// 	$('#Tx').text('');
-			// 	var _from = $('#From').val();
-			//     var _to = $('#To').val();
-			// 	var _Amount = $('#Amount').val();
-			// 	var txnObject = {
-			// 		"from":_from,
-			// 		"to": _to,
-			// 		"value": web3.utils.toWei(_Amount,'ether'),
-			// 		// "gas": 21000,         (optional)
-			// 		// "gasPrice": 4500000,  (optional)
-			// 		// "data": 'For testing' (optional)
-			// 		// "nonce": 10           (optional)
-			// 	}
-			
-			// 	web3.eth.sendTransaction(txnObject, function(error, result){
-			// 		if(error){
-			// 			console.log( "Transaction error" ,error);
-			// 		}
-			// 		else{
-			// 			var txn_hash = result; //Get transaction hash
-			// 			$('#Tx').text(txn_hash);
-			// 		}
-			// 	});
-				
-			// });
-			
-		
 		});
     </script>
-
 </body>
 </html>
