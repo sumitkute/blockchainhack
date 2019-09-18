@@ -630,7 +630,7 @@
 				const tx = {from: distributoraccount,to: addr,
 				gas: 45000000,data: mydistributorcontract.methods.Calculate(_id,_price,_discount).encodeABI()};
 				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
-					$('#lcordId').text('Created');
+					$('#lcordId').text('Discount Applied');
 				});
 			});
 			$('#CheckCredit').click(function() {

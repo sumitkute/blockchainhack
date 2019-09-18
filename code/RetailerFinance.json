@@ -1,0 +1,543 @@
+{
+  "ApplicationName": "RetailerFinance",
+  "ApplicationRoles": [
+    {
+      "Name": "Unilever",
+      "Description": "Anchor Party"
+    },
+    {
+      "Name": "Distributor",
+      "Description": "Sells to retailers"
+    },
+    {
+      "Name": "Retailer",
+      "Description": "Buys from distributors and sells to end customers"
+    },
+    {
+      "Name": "Bank",
+      "Description": "Verifies credit eligibility for the retailer and transfers amount for each order to teh distributor"
+    }
+  ],
+  "Description": "Allows retailer to place order, distributor to check credit for the retailer and the bank to provide approval for credit for the retailer",
+  "DisplayName": "RetailerFinance",
+  "Workflows": [
+    {
+      "Name": "RetailerFinance",
+      "DisplayName": "Retailer Finance",
+      "Description": "Handles the business logic for the retailer finance scenario",
+      "Initiators": [
+        "Retailer"
+      ],
+      "StartState": "OrderCreated",
+      "Properties": [
+        {
+          "Name": "State",
+          "DisplayName": "State",
+          "Description": "Holds the state of the contract",
+          "Type": {
+            "Name": "state"
+          }
+        },
+        {
+          "Name": "Retailer",
+          "DisplayName": "Retailer",
+          "Description": "Retailer who places an order",
+          "Type": {
+            "Name": "Retailer"
+          }
+        },
+        {
+          "Name": "Distributor",
+          "DisplayName": "Distributor",
+          "Description": "Distributor takes order from retailer and calculates prices",
+          "Type": {
+            "Name": "Distributor"
+          }
+        },
+        {
+          "Name": "Bank",
+          "DisplayName": "Bank",
+          "Description": "Bank is the party that provides the credit",
+          "Type": {
+            "Name": "Bank"
+          }
+        },
+        {
+          "Name": "Unilever",
+          "DisplayName": "Unilever",
+          "Description": "Unilever processes the order",
+          "Type": {
+            "Name": "Unilever"
+          }
+        }
+      ],
+      "Constructor": {"Parameters": [
+        {
+          "Name": "itemstr",
+          "Description": "Item to Order",
+          "DisplayName": "Item to Order",
+          "Type": {
+            "Name": "string"
+          }
+        },
+        {
+          "Name": "quantity",
+          "Description": "Qualtity to Order",
+          "DisplayName": "Qualtity to Order",
+          "Type": {
+            "Name": "int"
+          }
+        },
+        {
+          "Name": "pUnilever",
+          "Description": "Unilever",
+          "DisplayName": "Unilever",
+          "Type": {
+            "Name": "user"
+          }
+        },
+        {
+          "Name": "pRetailer",
+          "Description": "Retailer",
+          "DisplayName": "Retailer",
+          "Type": {
+            "Name": "user"
+          }
+        },
+        {
+          "Name": "pBank",
+          "Description": "Bank",
+          "DisplayName": "Bank",
+          "Type": {
+            "Name": "user"
+          }
+        },
+        {
+          "Name": "pDistributor",
+          "Description": "Distributor",
+          "DisplayName": "Distributor",
+          "Type": {
+            "Name": "user"
+          }
+        }
+      ]},
+      "Functions": [
+        {
+          "Name": "Calculate",
+          "DisplayName": "Calculate",
+          "Description": "Calculate the price for the order",
+          "Parameters": [
+            {
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "uprice",
+              "Description": "uprice",
+              "DisplayName": "uprice",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "discount",
+              "Description": "discount",
+              "DisplayName": "discount",
+              "Type": {
+                "Name": "int"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CheckCredit",
+          "DisplayName": "Check Credit for retailer",
+          "Description": "Check Credit for retailer",
+          "Parameters": [
+            {
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ApproveCredit",
+          "DisplayName": "ApproveCredit",
+          "Description": "ApproveCredit",
+          "Parameters": [
+            {
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "creditlimit",
+              "Description": "creditlimit",
+              "DisplayName": "creditlimit",
+              "Type": {
+                "Name": "int"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "PlaceOrder",
+          "DisplayName": "PlaceOrder",
+          "Description": "PlaceOrder",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        },
+        {
+          "Name": "OrderReady",
+          "DisplayName": "OrderReady",
+          "Description": "OrderReady",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        },
+        {
+          "Name": "TransferMoney",
+          "DisplayName": "TransferMoney",
+          "Description": "TransferMoney",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        },
+        {
+          "Name": "DeliverOrder",
+          "DisplayName": "deliverOrder",
+          "Description": "DeliverOrder",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        },
+        {
+          "Name": "CheckOrder",
+          "DisplayName": "CheckOrder",
+          "Description": "CheckOrder",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        },
+        {
+          "Name": "CloseOrder",
+          "DisplayName": "CloseOrder",
+          "Description": "CloseOrder",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        },
+        {
+          "Name": "Terminate",
+          "DisplayName": "Terminate",
+          "Description": "Terminate",
+          "Parameters": [{
+              "Name": "orderid",
+              "Description": "orderid",
+              "DisplayName": "orderid",
+              "Type": {
+                "Name": "int"
+              }
+            }]
+        }
+      ],
+      "States": [
+        {
+          "Name": "OrderCreated",
+          "DisplayName": "OrderCreated",
+          "Description": "The initial state of the asset transfer workflow",
+          "PercentComplete": 20,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Distributor"
+              ],
+              "AllowedInstanceRoles": [
+                "Distributor"
+              ],
+              "Description": "Calculates the order price",
+              "Function": "Calculate",
+              "NextStates": [
+                "PendingCreditCheck"
+              ],
+              "DisplayName": "PendingCreditCheck"
+            }
+          ]
+        },
+        {
+          "Name": "PendingCreditCheck",
+          "DisplayName": "PendingCreditCheck",
+          "Description": "PendingCreditCheck",
+          "PercentComplete": 30,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Bank"
+              ],
+              "AllowedInstanceRoles": [
+                "Bank"
+              ],
+              "Description": "Check Credit",
+              "Function": "CheckCredit",
+              "NextStates": [
+                "SendtoBank"
+              ],
+              "DisplayName": "SendtoBank"
+            }
+          ]
+        },
+        {
+          "Name": "SendtoBank",
+          "DisplayName": "SendtoBank",
+          "Description": "SendtoBank",
+          "PercentComplete": 40,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Bank"
+              ],
+              "AllowedInstanceRoles": [
+                "Bank"
+              ],
+              "Description": "Approve Credit",
+              "Function": "ApproveCredit",
+              "NextStates": [
+                "CreditApproved"
+              ],
+              "DisplayName": "CreditApproved"
+            }
+          ]
+        },
+        {
+          "Name": "CreditApproved",
+          "DisplayName": "CreditApproved",
+          "Description": "CreditApproved",
+          "PercentComplete": 50,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Unilever"
+              ],
+              "AllowedInstanceRoles": [
+                "Unilever"
+              ],
+              "Description": "Place Order",
+              "Function": "PlaceOrder",
+              "NextStates": [
+                "OrderPlaced"
+              ],
+              "DisplayName": "OrderPlaced"
+            }
+          ]
+        },
+        {
+          "Name": "OrderPlaced",
+          "DisplayName": "OrderPlaced",
+          "PercentComplete": 60,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Unilever"
+              ],
+              "AllowedInstanceRoles": [
+                "Unilever"
+              ],
+              "Description": "Mark order as ready",
+              "Function": "OrderReady",
+              "NextStates": [
+                "OrderPickListReady"
+              ],
+              "DisplayName": "OrderPickListReady"
+            }
+          ]
+        },
+        {
+          "Name": "OrderPickListReady",
+          "DisplayName": "OrderPickListReady",
+          "Description": "Order has been acted upon",
+          "PercentComplete": 70,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Bank"
+              ],
+              "AllowedInstanceRoles": [
+                "Bank"
+              ],
+              "Description": "TransferMoney",
+              "Function": "TransferMoney",
+              "NextStates": [
+                "OrderAmountReceived"
+              ],
+              "DisplayName": "OrderAmountReceived"
+            }
+          ]
+        },
+        {
+          "Name": "OrderAmountReceived",
+          "DisplayName": "OrderAmountReceived",
+          "Description": "Order amount is received by distributor",
+          "PercentComplete": 75,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Distributor"
+              ],
+              "AllowedInstanceRoles": [
+                "Distributor"
+              ],
+              "Description": "Deliver the order",
+              "Function": "DeliverOrder",
+              "NextStates": [
+                "OrderDelivered"
+              ],
+              "DisplayName": "OrderDelivered"
+            }
+          ]
+        },
+        {
+          "Name": "OrderDelivered",
+          "DisplayName": "OrderDelivered",
+          "Description": "Order delivered by distributor",
+          "PercentComplete": 85,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Distributor"
+              ],
+              "AllowedInstanceRoles": [
+                "Distributor"
+              ],
+              "Description": "Check the order",
+              "Function": "CheckOrder",
+              "NextStates": [
+                "OrderChecked"
+              ],
+              "DisplayName": "OrderChecked"
+            }
+          ]
+        },
+        {
+          "Name": "OrderChecked",
+          "DisplayName": "OrderChecked",
+          "Description": "Retailer has checked the order ",
+          "PercentComplete": 95,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Retailer"
+              ],
+              "AllowedInstanceRoles": [
+                "Retailer"
+              ],
+              "Description": "Order Checked, complete Order",
+              "Function": "CloseOrder",
+              "NextStates": [
+                "OrderClosed"
+              ],
+              "DisplayName": "OrderClosed"
+            }
+          ]
+        },
+        {
+          "Name": "OrderClosed",
+          "DisplayName": "OrderClosed",
+          "Description": "Ul completes the order",
+          "PercentComplete": 100,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Unilever"
+              ],
+              "AllowedInstanceRoles": [
+                "Unilever"
+              ],
+              "Description": "Order is completed",
+              "Function": "CloseOrder",
+              "NextStates": [
+                "OrderClosed"
+              ],
+              "DisplayName": "OrderClosed"
+            }
+          ]
+        },
+        {
+          "Name": "Terminated",
+          "DisplayName": "Terminated",
+          "Description": "Terminate the order",
+          "PercentComplete": 100,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [
+                "Retailer"
+              ],
+              "AllowedInstanceRoles": [
+                "Retailer"
+              ],
+              "Description": "Order is terminated",
+              "Function": "Terminate",
+              "NextStates": [
+                "Terminated"
+              ],
+              "DisplayName": "Terminated"
+            }
+          ]
+        }
+
+      ]
+    }
+  ]
+}
