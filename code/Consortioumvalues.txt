@@ -1,0 +1,11 @@
+ULblockchain@2019
+
+Retail contract address: 0x08168f4158c3142abc7572a41ce5c4456ad95fa0    
+Unilever   0xfb4857e55d1d34c33a27e5a4717084adb7653f38   		https://t1unilever.blockchain.azure.com:3200/SnjEwx7YeB8177LqismByDbS
+Retailer   0x10a255c3c6aced5f77a0a5d5deb1d6c07c290505   		https://t1retailer.blockchain.azure.com:3200/0pqAY3DkNjy0wyygwEdXpZMX
+Bank       0x92189e0a014e4a02f587720143aca65de89b1257			https://t1bank.blockchain.azure.com:3200/8EJPi2lg9FZmtd8o_tcS7aWy
+Distributor 0x95c8dca3af6720f80b18548130df6ba3a3084ac4			https://t1distributor.blockchain.azure.com:3200/Jmh0mpt1cELlPpdeL858hI4_
+
+created on azure pass: Q167CTWYIE8VPSSRNT
+
+
