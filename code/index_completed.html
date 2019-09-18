@@ -57,7 +57,7 @@
 		<table style="width:100%">
 			<tr>
 			  <td>Retail Contract Address</td>
-			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x0e650e990e0fe917ba0f84019cfa45b4c1df7c27"></td>
+			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x028f7c7d5e621591bc05da51e4da278722f281d9"></td>
 			</tr>
 			<tr>
 			  <td>Unilever</td>
@@ -95,12 +95,12 @@
 			  <td><input id="item" type="text"></td>
 			</tr>
 			<tr>
-			  <td>Quality</td>
-			  <td><input id="quality" type="text"></td>
+			  <td>Quantity</td>
+			  <td><input id="quantity" type="text"></td>
 			</tr>
 			<tr>
 				<td><button id="OrderCreate">Create</button></td>
-				<td><button id="DeliverOrder">DeliverOrder</button></td>
+				<td></td>
 			  </tr>
 		</table>	
 		<p>Order Hash : &nbsp  <span id="ordId"></span></p>
@@ -124,7 +124,7 @@
 				<td><label id="loitem"></label></td>
 			  </tr>
 			  <tr>
-				<td>Quality</td>
+				<td>Quantity</td>
 				<td><label id="loqty"></td>
 			  </tr>
 			  <tr>
@@ -608,10 +608,10 @@
 			$('#OrderCreate').click(function() {
 				$('#ordId').text('');
 				var _item = $('#item').val();
-			    var _quality = $('#quality').val();
+			    var _quantity = $('#quantity').val();
 				//web3.eth.personal.unlockAccount(_retaileraccount,"1234",600).then(console.log('Account unlocked!'));
 				const tx = {from: retaileraccount,to: addr,
-				gas: 45000000,data: myretailercontract.methods.CreateOrder(_item,_quality).encodeABI()};
+				gas: 45000000,data: myretailercontract.methods.CreateOrder(_item,_quantity).encodeABI()};
 				retailerrweb3.eth.sendTransaction(tx).then(function(result, error){
 					if(error){
 						console.log( "Transaction error" ,error);
