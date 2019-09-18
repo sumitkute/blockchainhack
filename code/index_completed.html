@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="author" content="Kenneth Hu">
+	<meta name="author" content="Sumit Kute">
     <title>Web3js</title>
 
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -15,26 +15,165 @@
 <body>
     <div class="container">
 
-        <h1>Web3.js</h1>
+        <h1>Retail Finance</h1>
 
         <label for="name" class="col-lg-2 control-label"><h3>NodeInfo</h3></label>
-        <input id="NodeInfo" type="text">
-		
-		<hr>
+        
+		<table style="width:100%">
+			<tr>
+			  <td>Unilever Node</td>
+			  <td><input id="UnileverNodeInfo" type="text"></td>
+			</tr>
+			<tr>
+					<td>Retailer Node</td>
+					<td><input id="RetailerNodeInfo" type="text"></td>
+				  </tr>
+				  <tr>
+						<td>Bank Node</td>
+						<td><input id="BankNodeInfo" type="text"></td>
+					  </tr>
+					  <tr>
+							<td>Distributor Node</td>
+							<td><input id="DistributorNodeInfo" type="text"></td>
+						  </tr>
+		</table>
 
+		<!-- <hr>
         <label for="name" class="col-lg-2 control-label"><h3>Balance</h3></label>
 		<p>Account : <input id="Account" type="text"> </p>
         <p>Balance : <input id="Balance" type="text"></p>
-		 <button id="checkBalance">Check Balance</button>
+		 <button id="checkBalance">Check Balance</button> -->
 
-		<hr>
+		<!-- <hr>
 		<label for="name" class="col-lg-2 control-label"><h3>Transfer</h3></label>
 		<p>From : &nbsp &nbsp &nbsp <input id="From" type="text"> </p>
 		<p>To : &nbsp &nbsp &nbsp &nbsp &nbsp <input id="To" type="text"> </p>
         <p>Amount : &nbsp <input id="Amount" type="text"></p>
         <button id="Transfer">Transfer</button>
-        <p>Transaction Hash : &nbsp  <span id="Tx"></span></p>
-
+		<p>Transaction Hash : &nbsp  <span id="Tx"></span></p>
+		 -->
+		<hr>
+		<label for="name" class="col-lg-2 control-label"><h3>Accounts Setup</h3></label>
+		<table style="width:100%">
+			<tr>
+			  <td>Retail Contract Address</td>
+			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x0e650e990e0fe917ba0f84019cfa45b4c1df7c27"></td>
+			</tr>
+			<tr>
+			  <td>Unilever</td>
+			  <td><input id="Unilever" size="100" type="text" value="0x427887ff482cf5827f746f01450d9ca1e62be165"></td>
+			  <td><input id="EndPointUnilever" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
+			  <td><input id="UnileverPassword" size="100" type="password" value="1234"></td>
+			</tr>
+			<tr>
+			  <td>Retailer</td>
+			  <td><input id="Retailer" size="100" type="text" value="0x0606fbbb9d02695855190a58695af3c05349bf15"></td>
+			  <td><input id="EndPointRetailer" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
+			  <td><input id="RetailerPassword" size="100" type="password" value="1234"></td>
+			</tr>
+			<tr>
+				<td>Bank</td>
+				<td><input id="Bank"  size="100" type="text" value="0x035b0dfbaa9456881083e5439246c82a4512f6bd"></td>
+				<td><input id="EndPointBank" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
+				<td><input id="BankPassword" size="100" type="password" value="1234"></td>
+			</tr>
+			  <tr>
+				<td>Distributor</td>
+				<td><input id="Distributor"  size="100" type="text" value="0x23679c8955eedbec7964eebf17c21f0e799ab05d"></td>
+				<td><input id="EndPointDistributor" size="100" type="text" value="https://uldistributor2.blockchain.azure.com:3200/EeubbQACzzRkgoeO60fCMu4p"></td>
+				<td><input id="DistributorPassword" size="100" type="password" value="1234"></td>
+			</tr>
+			  <tr>
+				<td colspan="2"><button id="SaveConfig">Save</button></td>
+			  </tr>
+		  </table>
+		<hr>
+		<label for="name" class="col-lg-2 control-label"><h3>Create Order</h3></label>
+		<table style="width:100%">
+			<tr>
+			  <td>Item Name</td>
+			  <td><input id="item" type="text"></td>
+			</tr>
+			<tr>
+			  <td>Quality</td>
+			  <td><input id="quality" type="text"></td>
+			</tr>
+			<tr>
+				<td><button id="OrderCreate">Create</button></td>
+				<td><button id="DeliverOrder">DeliverOrder</button></td>
+			  </tr>
+		</table>	
+		<p>Order Hash : &nbsp  <span id="ordId"></span></p>
+		<hr>
+		<label for="name" class="col-lg-2 control-label"><h3>Get Orders</h3></label>
+		<table style="width:50%">
+			<tr>
+			  <td>OrderId</td>
+			  <td><input id="orderId" type="text"></td>
+			</tr>
+			<tr>
+			  <td><button id="FetchOrder">Fetch the Order</button></td>
+			  <td></td>
+			</tr>
+			<tr>
+			  <td>Order Id: </td>
+			  <td><span id="loId"></span></td>
+			</tr>
+			<tr>
+				<td>Item Name</td>
+				<td><label id="loitem"></label></td>
+			  </tr>
+			  <tr>
+				<td>Quality</td>
+				<td><label id="loqty"></td>
+			  </tr>
+			  <tr>
+				<td>Price</td>
+				<td><label id="loprice"></label></td>
+			  </tr>
+			  <tr>
+				<td>Total</td>
+				<td><label id="lototal"></label></td>
+			  </tr>
+			  <tr>
+				<td>State</td>
+				<td><label id="lostate"></label></td>
+			  </tr>
+		  </table>
+		<hr>
+		<label for="name" class="col-lg-2 control-label"><h3>Calculate Discount</h3></label>
+		<table style="width:30%">
+			<tr>
+			  <td>Price</td>
+			  <td><input id="lcprice" type="text"></td>
+			</tr>
+			<tr>
+			  <td>Discount (%)</td>
+			  <td><input id="lcdiscount" type="text"></td>
+			</tr>
+			<tr>
+			  <td><button id="Calculate">Calculate</button></td>
+			  <td><button id="CheckCredit">CheckCredit</button></td>
+			</tr>
+		</table>		
+		
+		<p><h2>Status :  &nbsp  <span id="lcordId"></span></h2></p>
+		<hr>
+		<p>Credit Limit : &nbsp <input id="lccreditLimit" type="text"></p>
+		<button id="ApproveCredit">ApproveCredit</button>
+		<hr>
+		<table style="width:100%">
+			<tr>
+			  <td><button id="PlaceOrder">PlaceOrder</button></td>
+			  <td><button id="OrderReady">OrderReady</button></td>
+			  <td><button id="TransferMoney">TransferMoney</button></td>
+			</tr>
+			<tr>
+			  <td><button id="DeliverOrder">DeliverOrder</button></td>
+			  <td><button id="CheckOrder">CheckOrder</button></td>
+			  <td><button id="CloseOrder">CloseOrder</button></td>
+			</tr>
+		</table>	
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -44,76 +183,572 @@
 		$( document ).ready(function() {
 			console.log( "ready!" );
 			
-			if (typeof web3 !== 'undefined') {
-				web3 = new Web3(web3.currentProvider);
-			} else {
-					// set the provider you want from Web3.providers
-				web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+			var contractAbi =[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			},
+			{
+				"name": "creditlimit",
+				"type": "uint256"
 			}
-			web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-			/* Get Node Info */
-			web3.eth.getNodeInfo(function(error, result){
-				if(error){
+		],
+		"name": "ApproveCredit",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			},
+			{
+				"name": "uprice",
+				"type": "uint256"
+			},
+			{
+				"name": "discount",
+				"type": "uint256"
+			}
+		],
+		"name": "Calculate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "CheckCredit",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "CheckOrder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "CloseOrder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "itemstr",
+				"type": "string"
+			},
+			{
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "CreateOrder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "DeliverOrder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "OrderReady",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "PlaceOrder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "Terminate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "orderid",
+				"type": "uint256"
+			}
+		],
+		"name": "TransferMoney",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "pUnilever",
+				"type": "address"
+			},
+			{
+				"name": "pRetailer",
+				"type": "address"
+			},
+			{
+				"name": "pBank",
+				"type": "address"
+			},
+			{
+				"name": "pDistributor",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "Bank",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "Distributor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "orders",
+		"outputs": [
+			{
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"name": "itemname",
+				"type": "string"
+			},
+			{
+				"name": "quantity",
+				"type": "uint256"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "total",
+				"type": "uint256"
+			},
+			{
+				"name": "State",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "Retailer",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "State",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "Unilever",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+			var addr;
+			var retaileraccount;
+			var unileveraccount;
+			var bankaccount;
+			var distributoraccount;
+
+			var retaileraccountpass;
+			var unileveraccountpass;
+			var bankaccountpass;
+			var distributoraccountpass;
+
+			var distrubutorweb3;
+			var	unileverweb3;
+			var bankweb3;
+			var retailerrweb3;
+
+			var myunilevercontract;
+			var mydistributorcontract
+			var mybankcontract;
+			var myretailercontract;
+			// $('#checkBalance').click(function() {
+			//     var _account = $('#Account').val();
+			// 	web3.eth.getBalance(_account).then(function(result){
+			// 		console.log( "Balance : " ,web3.utils.fromWei(result, 'ether'));
+			// 		$('#Balance').val(web3.utils.fromWei(result, 'ether'));
+			// 	});
+			// });
+			
+			$('#SaveConfig').click(function() {
+				addr = $('#contractaddress').val();	
+				unileveraccount = 	$('#Unilever').val();
+				distributoraccount = 	$('#Distributor').val();
+				bankaccount = 	$('#Bank').val();
+				retaileraccount = 	$('#Retailer').val();
+				
+				unileveraccountpass = 	$('#UnileverPassword').val();
+				distributoraccountpass = 	$('#DistributorPassword').val();
+				bankaccountpass = 	$('#BankPassword').val();
+				retaileraccountpass = 	$('#RetailerPassword').val();
+				
+				endPointUnilever = $('#EndPointUnilever').val();
+				endPointdistributor = 	$('#EndPointDistributor').val();
+				endPointbank = 	$('#EndPointBank').val();
+				endPointretailer = 	$('#EndPointRetailer').val();
+				
+				if (typeof web3 !== 'undefined') {
+						web3 = new Web3(web3.currentProvider);
+				} else {
+					// set the provider you want from Web3.providers
+					distrubutorweb3 = new Web3(new Web3.providers.HttpProvider(endPointdistributor));
+					unileverweb3 = new Web3(new Web3.providers.HttpProvider(endPointUnilever));
+					bankweb3 = new Web3(new Web3.providers.HttpProvider(endPointbank));
+					retailerrweb3 = new Web3(new Web3.providers.HttpProvider(endPointretailer));
+				}
+				
+				unileverweb3.eth.personal.unlockAccount(unileveraccount,unileveraccountpass,0).then(console.log('Account unlocked!'));	
+				retailerrweb3.eth.personal.unlockAccount(retaileraccount,retaileraccountpass,0).then(console.log('Account unlocked!'));
+				bankweb3.eth.personal.unlockAccount(bankaccount,bankaccountpass,0).then(console.log('Account unlocked!'));
+				distrubutorweb3.eth.personal.unlockAccount(distributoraccount,distributoraccountpass,0).then(console.log('Account unlocked!'));
+				
+				mydistributorcontract = new distrubutorweb3.eth.Contract(contractAbi, addr);
+				myunilevercontract = new unileverweb3.eth.Contract(contractAbi, addr);
+				mybankcontract = new bankweb3.eth.Contract(contractAbi, addr);
+				myretailercontract = new retailerrweb3.eth.Contract(contractAbi, addr);
+				
+
+				distrubutorweb3.eth.getNodeInfo(function(error, result){
+				if(error)
+				{
 					console.log( "error" ,error);
 				}
-				else{
+				else
+				{
 					console.log( "result",result );
-					$('#NodeInfo').val(result);
+					$('#DistributorNodeInfo').val(result);
+				}});
+
+				bankweb3.eth.getNodeInfo(function(error, result){
+				if(error)
+				{
+					console.log( "error" ,error);
 				}
-			});
-			
-			/*Get Balance */
-			web3.eth.getAccounts(function(error, accounts) {
-				if(error) {
-					console.log(error);
+				else
+				{
+					console.log( "result",result );
+					$('#BankNodeInfo').val(result);
+				}});
+
+				unileverweb3.eth.getNodeInfo(function(error, result){
+				if(error)
+				{
+					console.log( "error" ,error);
 				}
-				$('#Account').val(accounts[0]);
-				web3.eth.getBalance(accounts[0]).then(function(result){
-					console.log( "Balance : " ,web3.utils.fromWei(result, 'ether'));
-					$('#Balance').val(web3.utils.fromWei(result, 'ether'));
-				});
-			});
-			
-			$('#checkBalance').click(function() {
-			    var _account = $('#Account').val();
-				web3.eth.getBalance(_account).then(function(result){
-					console.log( "Balance : " ,web3.utils.fromWei(result, 'ether'));
-					$('#Balance').val(web3.utils.fromWei(result, 'ether'));
-				});
-			});
-			
-			
-			/* Transfer */
-			$('#Transfer').click(function() {
-				$('#Tx').text('');
-				var _from = $('#From').val();
-			    var _to = $('#To').val();
-				var _Amount = $('#Amount').val();
-				var txnObject = {
-					"from":_from,
-					"to": _to,
-					"value": web3.utils.toWei(_Amount,'ether'),
-					// "gas": 21000,         (optional)
-					// "gasPrice": 4500000,  (optional)
-					// "data": 'For testing' (optional)
-					// "nonce": 10           (optional)
+				else
+				{
+					console.log( "result",result );
+					$('#UnileverNodeInfo').val(result);
+				}});
+				retailerrweb3.eth.getNodeInfo(function(error, result){
+				if(error)
+				{
+					console.log( "error" ,error);
 				}
-			
-				web3.eth.sendTransaction(txnObject, function(error, result){
+				else
+				{
+					console.log( "result",result );
+					$('#RetailerNodeInfo').val(result);
+				}});
+
+			});
+
+			$('#UUnLock').click(function() {
+				unileverweb3.eth.personal.lockAccount(unileveraccount).then(console.log('Account locked!'));
+				retailerrweb3.eth.personal.lockAccount(retaileraccount).then(console.log('Account locked!'));
+				bankweb3.eth.personal.lockAccount(bankaccount).then(console.log('Account locked!'));
+				distrubutorweb3.eth.personal.lockAccount(distributoraccount).then(console.log('Account locked!'));
+			});
+
+			$('#OrderCreate').click(function() {
+				$('#ordId').text('');
+				var _item = $('#item').val();
+			    var _quality = $('#quality').val();
+				//web3.eth.personal.unlockAccount(_retaileraccount,"1234",600).then(console.log('Account unlocked!'));
+				const tx = {from: retaileraccount,to: addr,
+				gas: 45000000,data: myretailercontract.methods.CreateOrder(_item,_quality).encodeABI()};
+				retailerrweb3.eth.sendTransaction(tx).then(function(result, error){
 					if(error){
 						console.log( "Transaction error" ,error);
 					}
 					else{
 						var txn_hash = result; //Get transaction hash
-						$('#Tx').text(txn_hash);
+						$('#ordId').text(txn_hash);
 					}
 				});
-				
 			});
+			$('#Calculate').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+			    var _price = $('#lcprice').val();
+				var _discount = $('#lcdiscount').val();
+				const tx = {from: distributoraccount,to: addr,
+				gas: 45000000,data: mydistributorcontract.methods.Calculate(_id,_price,_discount).encodeABI()};
+				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Created');
+				});
+			});
+			$('#CheckCredit').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: distributoraccount,to: addr,
+				gas: 45000000,data: mydistributorcontract.methods.CheckCredit(_id).encodeABI()};
+				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Send to Bank');
+				});
+			});
+			$('#ApproveCredit').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				var _creditlimit = $('#lccreditLimit').val();
+				const tx = {from: bankaccount,to: addr,
+				gas: 45000000,data: mybankcontract.methods.ApproveCredit(_id,_creditlimit).encodeABI()};
+				bankweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Credit Approved');
+				});
+			});
+			$('#PlaceOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: distributoraccount,to: addr,
+				gas: 45000000,data: mydistributorcontract.methods.PlaceOrder(_id).encodeABI()};
+				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Order Placed');
+				});
+			});
+			$('#OrderReady').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: unileveraccount,to: addr,
+				gas: 45000000,data: myunilevercontract.methods.OrderReady(_id).encodeABI()};
+				unileverweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Order Ready');
+				});
+			});
+			$('#TransferMoney').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: bankaccount,to: addr,
+				gas: 45000000,data: mybankcontract.methods.TransferMoney(_id).encodeABI()};
+				bankweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Order Amount Transfered to Distributor');
+				});
+			});
+			$('#DeliverOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: distributoraccount,to: addr,
+				gas: 45000000,data: mydistributorcontract.methods.DeliverOrder(_id).encodeABI()};
+				distrubutorweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Order Delivered to Retailer');
+				});
+			});
+			$('#CheckOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: retaileraccount,to: addr,
+				gas: 45000000,data: myretailercontract.methods.CheckOrder(_id).encodeABI()};
+				retailerrweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Order Verified');
+				});
+			});
+			$('#CloseOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: unileveraccount,to: addr,
+				gas: 45000000,data: myunilevercontract.methods.CloseOrder(_id).encodeABI()};
+				unileverweb3.eth.sendTransaction(tx).then(function(data) {
+					$('#lcordId').text('Order Closed..Hurahhh');
+				});
+			});
+			$('#FetchOrder').click(function() {
+				$('#orders').text('');
+				var _orderId = $('#orderId').val();
+				myunilevercontract.methods.orders(_orderId).call().then(function(data)
+				{
+					$('#loId').text(data.id);
+					$('#loitem').text(data.itemname);
+					$('#loqty').text(data.quantity);
+					$('#loprice').text(data.price);
+					$('#lototal').text(data.total);
+					$('#lostate').text(data.State);
+				});
+			});
+			/* Transfer */
+			// $('#Transfer').click(function() {
+			// 	$('#Tx').text('');
+			// 	var _from = $('#From').val();
+			//     var _to = $('#To').val();
+			// 	var _Amount = $('#Amount').val();
+			// 	var txnObject = {
+			// 		"from":_from,
+			// 		"to": _to,
+			// 		"value": web3.utils.toWei(_Amount,'ether'),
+			// 		// "gas": 21000,         (optional)
+			// 		// "gasPrice": 4500000,  (optional)
+			// 		// "data": 'For testing' (optional)
+			// 		// "nonce": 10           (optional)
+			// 	}
+			
+			// 	web3.eth.sendTransaction(txnObject, function(error, result){
+			// 		if(error){
+			// 			console.log( "Transaction error" ,error);
+			// 		}
+			// 		else{
+			// 			var txn_hash = result; //Get transaction hash
+			// 			$('#Tx').text(txn_hash);
+			// 		}
+			// 	});
+				
+			// });
 			
 		
 		});
-	
     </script>
 
 </body>
