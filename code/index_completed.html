@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="Sumit Kute">
-    <title>Web3js</title>
+    <title>Retail Finance Use Case Demo</title>
 
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
@@ -15,7 +15,7 @@
 <body>
     <div class="container">
 
-        <h1>Retail Finance</h1>
+        <h1>Retail Finance Hack</h1>
 
         <label for="name" class="col-lg-2 control-label"><h3>NodeInfo</h3></label>
         
@@ -99,7 +99,7 @@
 			  <td><input id="quantity" type="text"></td>
 			</tr>
 			<tr>
-				<td><button id="OrderCreate">Create</button></td>
+				<td><button id="OrderCreate" disabled>Create</button></td>
 				<td></td>
 			  </tr>
 		</table>	
@@ -112,7 +112,7 @@
 			  <td><input id="orderId" type="text"></td>
 			</tr>
 			<tr>
-			  <td><button id="FetchOrder">Fetch the Order</button></td>
+			  <td><button id="FetchOrder" disabled>Fetch the Order</button></td>
 			  <td></td>
 			</tr>
 			<tr>
@@ -562,6 +562,7 @@
 				{
 					console.log( "result",result );
 					$('#DistributorNodeInfo').val(result);
+					$("#OrderCreate").attr("disabled", false);
 				}});
 
 				bankweb3.eth.getNodeInfo(function(error, result){
@@ -584,6 +585,7 @@
 				{
 					console.log( "result",result );
 					$('#UnileverNodeInfo').val(result);
+					$("#FetchOrder").attr("disabled", false);
 				}});
 				retailerrweb3.eth.getNodeInfo(function(error, result){
 				if(error)
@@ -594,6 +596,7 @@
 				{
 					console.log( "result",result );
 					$('#RetailerNodeInfo').val(result);
+					
 				}});
 
 			});
