@@ -1,5 +1,5 @@
-# Web3Js for Practice
-this repository is used for web3.js priactice
+# Blockchain Hack using Web3.js
+this repository is using web3.js
 
 
 ![Image](./Img/main.png)
