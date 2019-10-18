@@ -2,7 +2,7 @@
 this code uses web3.js to communicate with ABS
 
 
-![Image](./Img/hack.PNG)
+![Image](./Img/hack.png)
 
 ## NodeInfo : 
   Get Ethereum Node Information
