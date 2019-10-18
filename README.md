@@ -1,5 +1,5 @@
-# Consortium Blockchain Hack using Web3.js
-this repository is using web3.js
+# Consortium Blockchain Hack using Web3.js with Azure Blockchain Service (ABS)
+this code uses web3.js to communicate with ABS
 
 
 ![Image](./Img/hack.PNG)
@@ -36,29 +36,3 @@ this repository is using web3.js
 			$('#Balance').val(web3.utils.fromWei(result, 'ether'));
 		});
 	});
-```
-
-
-## Transfer : 
-   Transfer Ether from "From" to "To"
-
-```
-	var txnObject = {
-			"from":_from,
-			"to": _to,
-			"value": web3.utils.toWei(_Amount,'ether'),
-			// "gas": 21000,         (optional)
-			// "gasPrice": 4500000,  (optional)
-			// "data": 'For testing' (optional)
-			// "nonce": 10           (optional)
-	    }
-			
-		web3.eth.sendTransaction(txnObject, function(error, result){
-			if(error){
-				console.log( "Transaction error" ,error);
-			}
-			else{
-				var txn_hash = result; //Get transaction hash
-			}
-		});
-```
