@@ -1,8 +1,8 @@
-# Web3Js for Practice
-this repository is used for web3.js priactice
+# Consortium Blockchain Hack using Web3.js with Azure Blockchain Service (ABS)
+this code uses web3.js to communicate with ABS
 
 
-![Image](./Img/main.png)
+![Image](./Img/hack.png)
 
 ## NodeInfo : 
   Get Ethereum Node Information
@@ -36,29 +36,3 @@ this repository is used for web3.js priactice
 			$('#Balance').val(web3.utils.fromWei(result, 'ether'));
 		});
 	});
-```
-
-
-## Transfer : 
-   Transfer Ether from "From" to "To"
-
-```
-	var txnObject = {
-			"from":_from,
-			"to": _to,
-			"value": web3.utils.toWei(_Amount,'ether'),
-			// "gas": 21000,         (optional)
-			// "gasPrice": 4500000,  (optional)
-			// "data": 'For testing' (optional)
-			// "nonce": 10           (optional)
-	    }
-			
-		web3.eth.sendTransaction(txnObject, function(error, result){
-			if(error){
-				console.log( "Transaction error" ,error);
-			}
-			else{
-				var txn_hash = result; //Get transaction hash
-			}
-		});
-```
