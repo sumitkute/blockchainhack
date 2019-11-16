@@ -1,23 +1,17 @@
 pragma solidity >=0.4.25 <0.6.0;
-//pragma experimental ABIEncoderV2;
+pragma experimental ABIEncoderV2;
 
 contract RetailerFinance
 {
-    address public Unilever;
+    address public Manufacturer;
     address public Retailer;
     address public Bank;
     address public Distributor;
 
     enum StateType {OrderCreated, PendingCreditCheck, SendtoBank, CreditApproved, OrderPlaced, OrderPickListReady,
                     OrderAmountReceived, OrderDelivered, OrderChecked, OrderClosed,Terminated }
-    struct Item {
-        string name;
-        uint amount;
-    }
-
     struct Order {
         uint id;
-        //mapping (uint => Item) items;
         string itemname;
         uint quantity;
         uint256 price;
@@ -25,12 +19,15 @@ contract RetailerFinance
         StateType State;
     }
 
+    event OrderList(uint, Order);
+    event OrderListA(Order[]);
+    
     StateType public State;
     uint numOrders = 0;
     mapping (uint => Order) public orders;
 
-    constructor(address pUnilever, address pRetailer, address pBank, address pDistributor) public {
-        Unilever = pUnilever;
+    constructor(address pManufacturer, address pRetailer, address pBank, address pDistributor) public {
+        Manufacturer = pManufacturer;
         Retailer = pRetailer;
         Bank = pBank;
         Distributor = pDistributor;
@@ -50,13 +47,9 @@ contract RetailerFinance
         orders[numOrders].itemname = itemstr;
         orders[numOrders].quantity = quantity;
         //orders[numOrders].Retailer = msg.sender;
+        //return orders[numOrders].id;
      }
 
-    // function Get(uint orderid) public view returns (uint) {
-    //     //Order storage ord = orders[orderid];
-    //     //o.State = StateType.Terminated;
-    //     return orders[orderid].id;
-    // }
     function Terminate(uint orderid) public {
         Order storage o = orders[orderid];
         if (Retailer != msg.sender)
@@ -73,14 +66,14 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (o.State != StateType.OrderCreated)
         {
-            revert('');
+            revert('The state can be called only when its order created');
         }
         if (Distributor != msg.sender)
         {
-            revert('Only distributor can calculate discount');
+           revert('Only distributor can calculate discount');
 
         }
-        o.price = ((o.quantity * uprice) / 100) * (100 - discount);
+        o.price = (o.quantity * uprice) * (1-(discount/100));
         Distributor = msg.sender;
         o.State = StateType.PendingCreditCheck;
     }
@@ -92,7 +85,7 @@ contract RetailerFinance
         {
             revert('');
         }
-        if (Distributor != msg.sender)
+        if (Distributor == msg.sender)
         {
             revert('');
         }
@@ -112,7 +105,7 @@ contract RetailerFinance
             revert('');
 
         }
-        if(o.price > creditlimit)
+        if(o.price >= creditlimit)
         {
             revert('Cannot order as does not have the required credit limit');
         }
@@ -141,7 +134,7 @@ contract RetailerFinance
         {
             revert('');
         }
-        if (Unilever != msg.sender)
+        if (Manufacturer != msg.sender)
         {
             revert('');
         }
@@ -192,7 +185,7 @@ contract RetailerFinance
     function CloseOrder(uint orderid) public
     {
         Order storage o = orders[orderid];
-        if (Unilever != msg.sender)
+        if (Manufacturer != msg.sender)
         {
             revert('');
         }
@@ -201,5 +194,35 @@ contract RetailerFinance
             revert('');
         }
         o.State = StateType.OrderClosed;
+   }
+   
+   function getAllOrders () public 
+   {
+        uint totalElem = numOrders;
+        for(uint i=1; i<=totalElem; i++)
+        {
+            emit OrderList(i, orders[i]);
+        }
+    }
+    
+    function getPeople() public view returns (Order[] memory)
+    {
+        uint totalOrders = numOrders;
+        Order[]    memory ord = new Order[](totalOrders);
+        for (uint i = 0; i < totalOrders; i++) {
+            ord[i] = orders[i+1];
+        }
+        return ord;
+    }
+    
+    function getOrd() public 
+    {
+        uint totalOrders = numOrders;
+        Order[]    memory ord = new Order[](totalOrders);
+        for (uint i = 0; i < totalOrders; i++) {
+            ord[i] = orders[i+1];
+        }
+        emit OrderListA(ord); 
+        
     }
 }

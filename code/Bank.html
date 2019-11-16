@@ -57,31 +57,31 @@
 		<table style="width:100%">
 			<tr>
 			  <td>Retail Contract Address</td>
-			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x0a6952538f61691e69F5621feCec1c0959fA602e"></td>
+			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x08168f4158c3142abc7572a41ce5c4456ad95fa0"></td>
 			</tr>
 			<tr>
 			  <td>Manufacturer</td>
-			  <td><input id="Manufacturer" size="100" type="text" value="0xa4fe130bb84aa9877bb9af5045e7ef926f99b01e"></td>
-			  <td><input id="EndPointManufacturer" size="100" type="text" value="https://hclmanufacturer.blockchain.azure.com:3200/NZQmaDK2yLz7N3mcK9u3NOBV"></td>
-			  <td><input id="ManufacturerPassword" size="100" type="password" value="Password@1234"></td>
+			  <td><input id="Manufacturer" size="100" type="text" value="0xfb4857e55d1d34c33a27e5a4717084adb7653f38"></td>
+			  <td><input id="EndPointManufacturer" size="100" type="text" value="https://t1Manufacturer.blockchain.azure.com:3200/SnjEwx7YeB8177LqismByDbS"></td>
+			  <td><input id="ManufacturerPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			<tr>
 			  <td>Retailer</td>
-			  <td><input id="Retailer" size="100" type="text" value="0xa4fe130bb84aa9877bb9af5045e7ef926f99b01e"></td>
-			  <td><input id="EndPointRetailer" size="100" type="text" value="https://hclmanufacturer.blockchain.azure.com:3200/NZQmaDK2yLz7N3mcK9u3NOBV"></td>
-			  <td><input id="RetailerPassword" size="100" type="password" value="Password@1234"></td>
+			  <td><input id="Retailer" size="100" type="text" value="0x10a255c3c6aced5f77a0a5d5deb1d6c07c290505"></td>
+			  <td><input id="EndPointRetailer" size="100" type="text" value="https://t1retailer.blockchain.azure.com:3200/0pqAY3DkNjy0wyygwEdXpZMX"></td>
+			  <td><input id="RetailerPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			<tr>
 				<td>Bank</td>
-				<td><input id="Bank"  size="100" type="text" value="0xa4fe130bb84aa9877bb9af5045e7ef926f99b01e"></td>
-				<td><input id="EndPointBank" size="100" type="text" value="https://hclmanufacturer.blockchain.azure.com:3200/NZQmaDK2yLz7N3mcK9u3NOBV"></td>
-				<td><input id="BankPassword" size="100" type="password" value="Password@1234"></td>
+				<td><input id="Bank"  size="100" type="text" value="0x92189e0a014e4a02f587720143aca65de89b1257"></td>
+				<td><input id="EndPointBank" size="100" type="text" value="https://t1bank.blockchain.azure.com:3200/8EJPi2lg9FZmtd8o_tcS7aWy"></td>
+				<td><input id="BankPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			  <tr>
 				<td>Distributor</td>
-				<td><input id="Distributor"  size="100" type="text" value="0xa4fe130bb84aa9877bb9af5045e7ef926f99b01e"></td>
-				<td><input id="EndPointDistributor" size="100" type="text" value="https://hclmanufacturer.blockchain.azure.com:3200/NZQmaDK2yLz7N3mcK9u3NOBV"></td>
-				<td><input id="DistributorPassword" size="100" type="password" value="Password@1234"></td>
+				<td><input id="Distributor"  size="100" type="text" value="0x95c8dca3af6720f80b18548130df6ba3a3084ac4"></td>
+				<td><input id="EndPointDistributor" size="100" type="text" value="https://t1distributor.blockchain.azure.com:3200/Jmh0mpt1cELlPpdeL858hI4_"></td>
+				<td><input id="DistributorPassword" size="100" type="password" value="ULblockchain@2019"></td>
 			</tr>
 			  <tr>
 				<td colspan="2"><button id="SaveConfig">Save</button></td>
@@ -329,7 +329,7 @@
 			    var _price = $('#lcprice').val();
 				var _discount = $('#lcdiscount').val();
 				const tx = {from: distributoraccount,to: addr,
-				gas: 4500000,data: mydistributorcontract.methods.Calculate(_id,_price,_discount).encodeABI()};
+				gas: 45000000,data: mydistributorcontract.methods.Calculate(_id,_price,_discount).encodeABI()};
 				distrubutorweb3.eth.sendTransaction(tx).then(function(result, error) {
 					if(error){
 						console.log( "Transaction error" ,error);
