@@ -21,7 +21,7 @@ contract RetailerFinance
 
     event OrderList(uint, Order);
     event OrderListA(Order[]);
-    
+
     StateType public State;
     uint numOrders = 0;
     mapping (uint => Order) public orders;
@@ -195,16 +195,16 @@ contract RetailerFinance
         }
         o.State = StateType.OrderClosed;
    }
-   
-   function getAllOrders () public 
+
+   function getAllOrders () public
    {
         uint totalElem = numOrders;
-        for(uint i=1; i<=totalElem; i++)
+        for(uint i = 1; i <= totalElem; i++)
         {
             emit OrderList(i, orders[i]);
         }
     }
-    
+
     function getPeople() public view returns (Order[] memory)
     {
         uint totalOrders = numOrders;
@@ -214,15 +214,14 @@ contract RetailerFinance
         }
         return ord;
     }
-    
-    function getOrd() public 
+
+    function getOrd() public
     {
         uint totalOrders = numOrders;
         Order[]    memory ord = new Order[](totalOrders);
         for (uint i = 0; i < totalOrders; i++) {
             ord[i] = orders[i+1];
         }
-        emit OrderListA(ord); 
-        
+        emit OrderListA(ord);
     }
 }
