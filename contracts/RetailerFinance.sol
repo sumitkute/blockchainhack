@@ -73,7 +73,8 @@ contract RetailerFinance
            revert('Only distributor can calculate discount');
 
         }
-        o.price = (o.quantity * uprice) * (1-(discount/100));
+        //o.price = (o.quantity * uprice) * (1-(discount/100));
+        o.price = ((o.quantity * uprice) / 100) * (100 - discount);
         Distributor = msg.sender;
         o.State = StateType.PendingCreditCheck;
     }

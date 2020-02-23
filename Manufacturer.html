@@ -4,46 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="author" content="Kenneth Hu">
-    <title>Web3js</title>
+	<meta name="author" content="Sumit Kute">
+    <title>Retail Finance Use Case Demo</title>
 
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
     <script src="js/web3.min.js"></script>
-
+	<script src="js/contractabi.js"></script>
 </head>
 <body>
     <div class="container">
 
-        <h1>Web3.js</h1>
+        <h1>Retail Finance Hack - MANUFACTURER</h1>
 
         <label for="name" class="col-lg-2 control-label"><h3>NodeInfo</h3></label>
-        <input id="NodeInfo" type="text">
-		
-		<hr>
+        
+		<table style="width:100%">
+			<tr>
+			  <td>Manufacturer Node</td>
+			  <td><input id="ManufacturerNodeInfo" type="text"></td>
+			</tr>
+			<tr>
+		</table>
 
+		<!-- <hr>
         <label for="name" class="col-lg-2 control-label"><h3>Balance</h3></label>
 		<p>Account : <input id="Account" type="text"> </p>
         <p>Balance : <input id="Balance" type="text"></p>
-		 <button id="checkBalance">Check Balance</button>
+		 <button id="checkBalance">Check Balance</button> -->
 
-		<hr>
+		<!-- <hr>
 		<label for="name" class="col-lg-2 control-label"><h3>Transfer</h3></label>
 		<p>From : &nbsp &nbsp &nbsp <input id="From" type="text"> </p>
 		<p>To : &nbsp &nbsp &nbsp &nbsp &nbsp <input id="To" type="text"> </p>
         <p>Amount : &nbsp <input id="Amount" type="text"></p>
         <button id="Transfer">Transfer</button>
 		<p>Transaction Hash : &nbsp  <span id="Tx"></span></p>
-
+		 -->
+		<hr>
+		<label for="name" class="col-lg-2 control-label"><h3>Accounts Setup</h3></label>
+		<table style="width:100%">
+			<tr>
+			  <td>Retail Contract Address</td>
+			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x08168f4158c3142abc7572a41ce5c4456ad95fa0"></td>
+			</tr>
+			<tr>
+			  <td>Manufacturer</td>
+			  <td><input id="Manufacturer" size="100" type="text" value="0xba0f650c46cff63bb26c4675727f93511bcdb574"></td>
+			  <td><input id="EndPointManufacturer" size="100" type="text" value="https://manufacturer.blockchain.azure.com:3200/3TBibxPKZWTyfQV1CmISAx46"></td>
+			  <td><input id="ManufacturerPassword" size="100" type="password" value="Password@1234"></td>
+			</tr>
+			  <tr>
+				<td colspan="2"><button id="SaveConfig">Save</button></td>
+			  </tr>
+		  </table>
+		<hr>
+		<label for="name" class="col-lg-2 control-label"><h3>Get Orders</h3></label>
+		<table style="width:50%">
+			<tr>
+			  <td>OrderId</td>
+			  <td><input id="orderId" type="text"></td>
+			</tr>
+			<tr>
+			  <td><button id="FetchOrder" disabled>Fetch the Order</button></td>
+			  <td></td>
+			</tr>
+			<tr>
+			  <td>Order Id: </td>
+			  <td><span id="loId"></span></td>
+			</tr>
+			<tr>
+				<td>Item Name</td>
+				<td><label id="loitem"></label></td>
+			  </tr>
+			  <tr>
+				<td>Quantity</td>
+				<td><label id="loqty"></td>
+			  </tr>
+			  <tr>
+				<td>Price</td>
+				<td><label id="loprice"></label></td>
+			  </tr>
+			  <!-- <tr>
+				<td>Total</td>
+				<td><label id="lototal"></label></td>
+			  </tr> -->
+			  <tr>
+				<td>State</td>
+				<td><label id="lostate"></label></td>
+			  </tr>
+		  </table>
+		<hr>
+		<p><h2>Status :  &nbsp  <span id="lcordId"></span></h2></p>
+		<hr>
+		<table style="width:100%">
+			<tr>
+			  <td><button id="OrderReady" disabled>OrderReady</button></td>
+			</tr>
+			<tr>
+			  <td><button id="CloseOrder" disabled>CloseOrder</button></td>
+			</tr>
+		</table>	
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-
+	
     <script>
     
-	// code here
-	
-    </script>
+		$( document ).ready(function() {
+			console.log( "ready!" );
+			
 
+			var addr;
+			var Manufactureraccount;
+
+			var Manufactureraccountpass;
+
+			var	Manufacturerweb3;
+
+			var myManufacturercontract;
+			
+			$('#SaveConfig').click(function() {
+				addr = $('#contractaddress').val().trim();	
+				Manufactureraccount = 	$('#Manufacturer').val().trim();
+				
+				Manufactureraccountpass = 	$('#ManufacturerPassword').val().trim();
+				
+				endPointManufacturer = $('#EndPointManufacturer').val().trim();
+				
+				if (typeof web3 !== 'undefined') {
+						web3 = new Web3(web3.currentProvider);
+				} else {
+					// set the provider you want from Web3.providers
+					Manufacturerweb3 = new Web3(new Web3.providers.HttpProvider(endPointManufacturer));
+				}
+				
+				Manufacturerweb3.eth.personal.unlockAccount(Manufactureraccount,Manufactureraccountpass,0).then(console.log('Account unlocked!'));	
+				
+				myManufacturercontract = new Manufacturerweb3.eth.Contract(contractAbi, addr);
+				
+
+				Manufacturerweb3.eth.getNodeInfo(function(error, result){
+				if(error)
+				{
+					console.log( "error" ,error);
+				}
+				else
+				{
+					console.log( "result",result );
+					$('#ManufacturerNodeInfo').val(result);
+					$("#FetchOrder").attr("disabled", false);
+				}});
+
+			});
+
+			$('#UUnLock').click(function() {
+				Manufacturerweb3.eth.personal.lockAccount(Manufactureraccount).then(console.log('Account locked!'));
+			});
+		
+			$('#OrderReady').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: Manufactureraccount,to: addr,
+				gas: 45000000,data: myManufacturercontract.methods.OrderReady(_id).encodeABI()};
+				Manufacturerweb3.eth.sendTransaction(tx).then(function(result, error)  {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#OrderReady").attr("disabled", true);
+						$("#TransferMoney").attr("disabled", false);
+						$('#lcordId').text('Order Ready');
+					}
+				});
+			});
+			$('#CloseOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: Manufactureraccount,to: addr,
+				gas: 45000000,data: myManufacturercontract.methods.CloseOrder(_id).encodeABI()};
+				Manufacturerweb3.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#CloseOrder").attr("disabled", true);
+						$('#lcordId').text('Order Closed..Hurahhh');
+					}
+				});
+			});
+			$('#FetchOrder').click(function() {
+				$('#orders').text('');
+				var _orderId = $('#orderId').val();
+				myManufacturercontract.methods.orders(_orderId).call().then(function(data)
+				{
+					$('#loId').text(data.id);
+					$('#loitem').text(data.itemname);
+					$('#loqty').text(data.quantity);
+					$('#loprice').text(data.price);
+					//$('#lototal').text(data.total);
+					switch(data.State) {
+							case "0":
+								{
+									$('#lostate').text("Order Created");
+									$("#Calculate").attr("disabled", false);
+									$("#CheckCredit").attr("disabled", true);
+								}
+								break;
+								case "1":
+								{
+									$('#lostate').text("Pending Credit Check");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", false);
+								}
+								break;
+								case "2":
+								{
+									$('#lostate').text("Send to Bank");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", false);
+								}
+								break;
+								case "3":
+								{
+									$('#lostate').text("Credit Approved");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", false);
+								}
+								break;
+								case "4":
+								{
+									$('#lostate').text("Order Placed");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", false);
+								}
+								break;
+								case "5":
+								{
+									$('#lostate').text("Order Ready");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", false);
+								}
+								break;
+								case "6":
+								{
+									$('#lostate').text("Order Amount Received");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", false);
+								}
+									break;
+								case "7":
+								{	
+									$('#lostate').text("Order Delivered");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", false);
+								}
+								break;
+								case "8":
+								{
+									$('#lostate').text("Order Verified");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", false);
+								}
+								break;
+								case "9":
+								{
+									$('#lostate').text("Order Closed");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", true);
+								}
+								break;
+								case "10":
+								{
+									$('#lostate').text("Order Terminated");
+									$("#Calculate").attr("disabled", true);
+									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
+									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
+									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", true);
+								}
+								break;
+								default:
+									$('#lostate').text("No Status Found");
+							}
+				});
+			});
+		});
+    </script>
 </body>
 </html>
