@@ -84,11 +84,11 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (o.State != StateType.PendingCreditCheck)
         {
-            revert('');
+            revert('Not a correct State');
         }
-        if (Distributor == msg.sender)
+        if (Distributor != msg.sender)
         {
-            revert('');
+            revert('Not a Distributor');
         }
         //need logic to check credit limit
         o.State = StateType.SendtoBank;
@@ -99,11 +99,11 @@ contract RetailerFinance
         Order storage o = orders[orderid];
        if (o.State != StateType.SendtoBank)
         {
-            revert('');
+            revert('Not a correct State');
         }
         if (Bank != msg.sender)
         {
-            revert('');
+            revert('Not a correct Bank');
 
         }
         if(o.price >= creditlimit)
@@ -119,12 +119,12 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (msg.sender != Distributor)
         {
-            revert('');
+            revert('Not a Distrubutor');
 
         }
         if (o.State != StateType.CreditApproved )
         {
-            revert('');
+            revert('Not a correct State');
         }
         o.State = StateType.OrderPlaced;
     }
@@ -133,11 +133,11 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (o.State != StateType.OrderPlaced)
         {
-            revert('');
+            revert('Not a correct State');
         }
         if (Manufacturer != msg.sender)
         {
-            revert('');
+            revert('Not a Manufacturer');
         }
         o.State = StateType.OrderPickListReady;
     }
@@ -147,11 +147,11 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (o.State != StateType.OrderPickListReady)
         {
-            revert('');
+            revert('Not a correct State');
         }
         if (Bank != msg.sender)
         {
-            revert('');
+            revert('Not a Bank');
         }
         o.State = StateType.OrderAmountReceived;
     }
@@ -160,12 +160,12 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (Distributor != msg.sender)
         {
-            revert('');
+            revert('Not a Distributor');
 
         }
         if (o.State != StateType.OrderAmountReceived)
         {
-            revert('');
+            revert('Not a correct State');
         }
         o.State = StateType.OrderDelivered;
     }
@@ -174,11 +174,11 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (Retailer != msg.sender)
         {
-            revert('');
+            revert('Not a Retailer');
         }
         if (o.State != StateType.OrderDelivered)
         {
-            revert('');
+            revert('Not a correct State');
         }
         o.State = StateType.OrderChecked;
     }
@@ -188,11 +188,11 @@ contract RetailerFinance
         Order storage o = orders[orderid];
         if (Manufacturer != msg.sender)
         {
-            revert('');
+            revert('Not a Manufacturer');
         }
         if (o.State != StateType.OrderChecked)
         {
-            revert('');
+            revert('Not a correct State');
         }
         o.State = StateType.OrderClosed;
    }
