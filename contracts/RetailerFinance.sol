@@ -37,7 +37,6 @@ contract RetailerFinance
     function CreateOrder(string memory itemstr, uint quantity) public
     {
         numOrders++;
-        //orderId = numOrders++;
         orders[numOrders].id = numOrders;
         orders[numOrders].State = StateType.OrderCreated;
         // for(uint i = 0; i<_array.length; i++)

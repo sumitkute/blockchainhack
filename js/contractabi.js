@@ -3,7 +3,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			},
 			{
@@ -21,7 +21,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			},
 			{
@@ -43,7 +43,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -57,7 +57,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -71,7 +71,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -103,7 +103,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -115,9 +115,27 @@ var contractAbi =[
 	},
 	{
 		"constant": false,
+		"inputs": [],
+		"name": "getAllOrders",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "getOrd",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -131,7 +149,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -145,7 +163,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -159,7 +177,7 @@ var contractAbi =[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "orderid",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -172,25 +190,106 @@ var contractAbi =[
 	{
 		"inputs": [
 			{
-				"name": "pManufacturer",
+				"name": "paramManufacturer",
 				"type": "address"
 			},
 			{
-				"name": "pRetailer",
+				"name": "paramRetailer",
 				"type": "address"
 			},
 			{
-				"name": "pBank",
+				"name": "paramBank",
 				"type": "address"
 			},
 			{
-				"name": "pDistributor",
+				"name": "paramDistributor",
 				"type": "address"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "itemname",
+						"type": "string"
+					},
+					{
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"name": "total",
+						"type": "uint256"
+					},
+					{
+						"name": "State",
+						"type": "uint8"
+					}
+				],
+				"indexed": false,
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"name": "OrderList",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"components": [
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "itemname",
+						"type": "string"
+					},
+					{
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"name": "total",
+						"type": "uint256"
+					},
+					{
+						"name": "State",
+						"type": "uint8"
+					}
+				],
+				"indexed": false,
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"name": "OrderListA",
+		"type": "event"
 	},
 	{
 		"constant": true,
@@ -210,6 +309,60 @@ var contractAbi =[
 		"constant": true,
 		"inputs": [],
 		"name": "Distributor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getPeople",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "itemname",
+						"type": "string"
+					},
+					{
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"name": "total",
+						"type": "uint256"
+					},
+					{
+						"name": "State",
+						"type": "uint8"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "Manufacturer",
 		"outputs": [
 			{
 				"name": "",
@@ -281,20 +434,6 @@ var contractAbi =[
 			{
 				"name": "",
 				"type": "uint8"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "Manufacturer",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
 			}
 		],
 		"payable": false,
