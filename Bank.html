@@ -53,7 +53,7 @@
 					<input id="nodeInfo" type="text" class="form-control" readonly>
 					</div>
 				</form>
-				<h2><span class="badge badge-secondary">Accounts Setup</span></h2>
+				<h2><span class="badge badge-secondary">Account Setup</span></h2>
 				<form>
 					<div class="form-group">
 					<label for="retailContractAddress">Retail Contract Address</label>
@@ -111,6 +111,7 @@
 								<th scope="col">Quantity</th>
 								<th scope="col">Price</th>
 								<th scope="col">State</th>
+								<th scope="col">Next Step</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -120,6 +121,7 @@
 								<td id="loqty"></td>
 								<td id="loprice"></td>
 								<td id="lostate"></td>
+								<td id="lonextstate"></td>
 							</tr>
 							</tbody>
 						</table>
@@ -229,11 +231,11 @@
 					$('#SaveConfig').attr("disabled",false);
 					$('#divLoading').attr("hidden",true);
 					$('#OrderCreate').attr("disabled",false);
+					fetchAllOrders();
 				}});
 
 			});
-			$('#FetchAllOrders').click(function() {
-				
+			function fetchAllOrders() {
 				//Clear the table
 				var table =  $('#OrderDataTable');
 				table.empty();
@@ -246,7 +248,9 @@
 						console.log(result);
 					}
 				});
-				
+			}
+			$('#FetchAllOrders').click(function() {
+				fetchAllOrders();
 			});
 			$('#FetchOrder').click(function() {
 				$('#orders').text('');
@@ -258,6 +262,7 @@
 					$('#loqty').text(data.quantity);
 					$('#loprice').text(data.price);
 					$('#lostate').text(OrderStateEnum.properties[data.State].name);
+					$('#lonextstate').text(OrderNextStateEnum.properties[data.NextState].name + " By " + OrderNextStateEnum.properties[data.NextState].owner)
 					//$('#lototal').text(data.total);
 					switch(data.State) {
 							case "0":
