@@ -6,273 +6,386 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="Sumit Kute">
     <title>Retail Finance Use Case Demo</title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="js/web3.min.js"></script>
 	<script src="js/contractabi.js"></script>
+	<script src="js/common.js"></script>
 </head>
 <body>
-    <div class="container">
-
-        <h1>Retail Finance Hack - DISTRIBUTOR </h1>
-
-        <label for="name" class="col-lg-2 control-label"><h3>NodeInfo</h3></label>
-        
-		<table style="width:100%">
-		
-					  <tr>
-							<td>Distributor Node</td>
-							<td><input id="DistributorNodeInfo" type="text"></td>
-						  </tr>
-		</table>
-
-		<!-- <hr>
-        <label for="name" class="col-lg-2 control-label"><h3>Balance</h3></label>
-		<p>Account : <input id="Account" type="text"> </p>
-        <p>Balance : <input id="Balance" type="text"></p>
-		 <button id="checkBalance">Check Balance</button> -->
-
-		<!-- <hr>
-		<label for="name" class="col-lg-2 control-label"><h3>Transfer</h3></label>
-		<p>From : &nbsp &nbsp &nbsp <input id="From" type="text"> </p>
-		<p>To : &nbsp &nbsp &nbsp &nbsp &nbsp <input id="To" type="text"> </p>
-        <p>Amount : &nbsp <input id="Amount" type="text"></p>
-        <button id="Transfer">Transfer</button>
-		<p>Transaction Hash : &nbsp  <span id="Tx"></span></p>
-		 -->
-		<hr>
-		<label for="name" class="col-lg-2 control-label"><h3>Accounts Setup</h3></label>
-		<table style="width:100%">
-			<tr>
-			  <td>Retail Contract Address</td>
-			  <td colspan="3"><input id="contractaddress" size="100" type="text" value="0x91DCCf00A04F9De62249c837987e768903E51d14"></td>
-			</tr>
-			
-			  <tr>
-				<td>Distributor</td>
-				<td><input id="Distributor"  size="100" type="text" value="0xba0f650c46cff63bb26c4675727f93511bcdb574"></td>
-				<td><input id="EndPointDistributor" size="100" type="text" value="https://manufacturer.blockchain.azure.com:3200/3TBibxPKZWTyfQV1CmISAx46"></td>
-				<td><input id="DistributorPassword" size="100" type="password" value="Password@1234"></td>
-			</tr>
-			  <tr>
-				<td colspan="2"><button id="SaveConfig">Save</button></td>
-			  </tr>
-		  </table>
-		<hr>
-		<label for="name" class="col-lg-2 control-label"><h3>Get Orders</h3></label>
-		<table style="width:50%">
-			<tr>
-			  <td>OrderId</td>
-			  <td><input id="orderId" type="text"></td>
-			</tr>
-			<tr>
-			  <td><button id="FetchOrder" disabled>Fetch the Order</button></td>
-			  <td></td>
-			</tr>
-			<tr>
-			  <td>Order Id: </td>
-			  <td><span id="loId"></span></td>
-			</tr>
-			<tr>
-				<td>Item Name</td>
-				<td><label id="loitem"></label></td>
-			  </tr>
-			  <tr>
-				<td>Quantity</td>
-				<td><label id="loqty"></td>
-			  </tr>
-			  <tr>
-				<td>Price</td>
-				<td><label id="loprice"></label></td>
-			  </tr>
-			  <!-- <tr>
-				<td>Total</td>
-				<td><label id="lototal"></label></td>
-			  </tr> -->
-			  <tr>
-				<td>State</td>
-				<td><label id="lostate"></label></td>
-			  </tr>
-		  </table>
-		<hr>
-		
-		<p><h2>Status :  &nbsp  <span id="lcordId"></span></h2></p>
-		<hr>
-		<table style="width:100%">
-			<tr>
-			  <td><button id="PlaceOrder" disabled>PlaceOrder</button></td>
-			  <td><button id="OrderReady" disabled>OrderReady</button></td>
-			  <td><button id="TransferMoney" disabled>TransferMoney</button></td>
-			</tr>
-			<tr>
-			  <td><button id="DeliverOrder" disabled>DeliverOrder</button></td>
-			  <td><button id="CheckOrder" disabled>CheckOrder</button></td>
-			  <td><button id="CloseOrder" disabled>CloseOrder</button></td>
-			</tr>
-		</table>	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<nav class="navbar sticky-top navbar-expand-md navbar-light" style="background-color:skyblue">
+					<a class="navbar-brand" href="#">Retail Finance</a>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+						<a class="nav-link" href="Manufacturer.html">	Manufacturer</a>
+						</li>
+						<li class="nav-item ">
+						<a class="nav-link" href="Retailer.html">Retail </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="Bank.html">Bank </a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="Distributor.html">Distributor <span class="sr-only">(current)</span></a>
+						</li>
+					</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h2></h2>
+				<h2><span class="badge badge-secondary">NodeInfo</span></h2>
+				<form>
+					<div class="form-group">
+					<label for="nodeAddress">Distributor Node</label>
+					<input id="nodeInfo" type="text" class="form-control" readonly>
+					</div>
+				</form>
+				<h2><span class="badge badge-secondary">Account Setup</span></h2>
+				<form>
+					<div class="form-group">
+					<label for="retailContractAddress">Retail Contract Address</label>
+					<input id="contractaddress" type="text" class="form-control"  aria-describedby="contractHelp">
+					<small id="contractHelp" class="form-text text-muted">Please enter your deployed contract address hash</small>
+					</div>
+					<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="retailContractAddress">Account Address</label>
+						<input id="accountAddress" type="text" class="form-control">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="retailContractAddress">Account Password</label>
+						<input id="accountpass" type="password" class="form-control">
+					</div>
+					</div> 
+					<div class="form-group">
+						<label for="retailContractAddress">Node Endpoint</label>
+						<input id="nodeEndPoint" type="text" class="form-control" aria-describedby="endpointHelp">
+						<small id="endpointHelp" class="form-text text-muted">wss://node.blockchain.azure.com:3300/3TBibxPKZWTyfQV1CmIS46</small>
+					</div>
+					<div class="form-group">
+						<div>
+							<button id="SaveConfig" type="button" class="btn btn-primary">Connect</button>
+						</div>
+						<div id="divLoading" class="spinner-border" role="status" hidden>
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col">
+				<h2><span class="badge badge-secondary">Compute Discount</span></h2>
+				<form>
+					<div class="form-group">
+						<label for="lbprice">Price</label>
+						<input id="lcprice" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="lbdiscount">Discount</label>
+						<input id="lcdiscount" type="text" class="form-control">
+					</div>
+					<button id="Calculate" type="button" class="btn btn-primary" disabled>Provide Discount</button>
+					<div id="ordId" class="alert alert-success" role="alert" hidden>
+					</div>
+				</form>
+				<h2><span class="badge badge-secondary">Load Order</span></h2>
+				<form>
+					<div class="form-group">
+						<input id="orderId" type="text" class="form-control" placeholder="Order Id" aria-describedby="FetchOrder">
+						<div class="input-group">
+							<button class="btn btn-outline-primary" type="button" id="FetchOrder">Fetch a Order</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<table class="table table-sm">
+							<thead>
+							<tr>
+								<th scope="col">Order#</th>
+								<th scope="col">Item Name</th>
+								<th scope="col">Quantity</th>
+								<th scope="col">Price</th>
+								<th scope="col">State</th>
+								<th scope="col">Next Step</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<th id="loId" scope="row"></th>
+								<td id="loitem"></td>
+								<td id="loqty"></td>
+								<td id="loprice"></td>
+								<td id="lostate"></td>
+								<td id="lonextstate"></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<button type="button" id="CheckCredit" class="btn btn-md btn-primary" disabled="">Check Credit</button>
+						</div>
+						<div class="form-group col-md-2">
+							<button type="button" id="PlaceOrder" class="btn btn-md btn-primary" disabled="">Place Order</button>
+						</div>
+						<div class="form-group col-md-2">
+							<button type="button" id="DeliverOrder" class="btn btn-md btn-primary" disabled="">Deliver Order</button>
+						</div>
+						<div class="form-group col-md-2">
+							<button type="button" id="CloseOrder" class="btn btn-md btn-primary" disabled="">Close Order</button>
+						</div>
+					</div>
+				</form>
+				<form>
+				<div class="form-group">
+				<button id="FetchAllOrders" type="button" class="btn btn-lg btn-primary" disabled>Load All Order</button></td>
+				</div>
+				<div id="allOrdersDiv" class="form-group">
+					<table id="allOrderTable" class="table table-dark">
+						<thead>
+						<tr>
+							<th scope="col">Order Id</th>
+							<th scope="col">Order Item</th>
+							<th scope="col">Order Quantity</th>
+							<th scope="col">Order Price</th>
+							<th scope="col">Order State</th>
+						</tr>
+						</thead>
+						<tbody id="OrderDataTable">
+						</tbody>
+					</table>
+				</div>
+				</form>
+				<h2>Status :  &nbsp  <span id="lcordId"></span></h2>
+			</div>
+		</div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	
     <script>
-    
+		
 		$( document ).ready(function() {
 			console.log( "ready!" );
-			
-
 			var addr;
-			var distributoraccount;
-
-			var distributoraccountpass;
-
-			var distrubutorweb3;
-
-			var mydistributorcontract;
-			// $('#checkBalance').click(function() {
-			//     var _account = $('#Account').val();
-			// 	web3.eth.getBalance(_account).then(function(result){
-			// 		console.log( "Balance : " ,web3.utils.fromWei(result, 'ether'));
-			// 		$('#Balance').val(web3.utils.fromWei(result, 'ether'));
-			// 	});
-			// });
-			
+			var account;
+			var accountpass;
+			var	web2conn;
+			var mycontract;
+			var ordersEvent;
+            InitDistributorConfig(); 
+			 
 			$('#SaveConfig').click(function() {
+
 				addr = $('#contractaddress').val().trim();	
-				distributoraccount = 	$('#Distributor').val().trim();
-				
-				distributoraccountpass = 	$('#DistributorPassword').val().trim();
-				
-				endPointdistributor = 	$('#EndPointDistributor').val().trim();
+				account = 	$('#accountAddress').val().trim();
+				accountpass = 	$('#accountpass').val().trim();
+				nodeEndPoint = $('#nodeEndPoint').val().trim();
 				
 				if (typeof web3 !== 'undefined') {
 						web3 = new Web3(web3.currentProvider);
 				} else {
 					// set the provider you want from Web3.providers
-					distrubutorweb3 = new Web3(new Web3.providers.HttpProvider(endPointdistributor));
+					web2conn = new Web3(new Web3.providers.WebsocketProvider(nodeEndPoint));
+					//web3.setProvider(web2conn)
 				}
 				
-				distrubutorweb3.eth.personal.unlockAccount(distributoraccount,distributoraccountpass,0).then(console.log('Account unlocked!'));
-				
-				mydistributorcontract = new distrubutorweb3.eth.Contract(contractAbi, addr);
-				
-
-				distrubutorweb3.eth.getNodeInfo(function(error, result){
+				web2conn.eth.personal.unlockAccount(account,accountpass,0).then(console.log('Account unlocked!'));	
+				mycontract = new web2conn.eth.Contract(contractAbi, addr);
+				mycontract.events.OrderList({
+					filter: {}, // Using an array means OR: e.g. 20 or 23
+					fromBlock: 0
+				},function (error, event) {
+					console.log(event);
+					if(event.returnValues[1])
+					{
+						var table =  $('#OrderDataTable');
+						var html = '<tr>';
+						html +='<tr>';
+						html +='<th scope="row">';
+						html +=event.returnValues[1].id;
+						html +='</th>';
+						html +='<td>';
+						html +=event.returnValues[1].itemname;
+						html +='</td>';
+						html +='<td>';
+						html +=event.returnValues[1].quantity;
+						html +='</td>';
+						html +='<td>';
+						html +=event.returnValues[1].price;
+						html +='</td>';
+						html +='<td>';
+						html +=OrderStateEnum.properties[event.returnValues[1].State].name;
+						html +='</td>';
+						html +='</tr>'
+						table.append(html);
+					}
+				});
+				$('#SaveConfig').attr("disabled", true);
+				$('#divLoading').attr("hidden",false);
+				web2conn.eth.getNodeInfo(function(error, result){
 				if(error)
 				{
 					console.log( "error" ,error);
+					$('#SaveConfig').attr("disabled",false);
 				}
 				else
 				{
 					console.log( "result",result );
-					$('#DistributorNodeInfo').val(result);
+					$('#nodeInfo').val(result);
 					$("#FetchOrder").attr("disabled", false);
+					$("#FetchAllOrders").attr("disabled", false);
+					$('#SaveConfig').attr("disabled",false);
+					$('#divLoading').attr("hidden",true);
+					$('#OrderCreate').attr("disabled",false);
+					fetchAllOrders();
 				}});
-				
-			});
 
-			$('#UUnLock').click(function() {
-				distrubutorweb3.eth.personal.lockAccount(distributoraccount).then(console.log('Account locked!'));
+			});
+			function fetchAllOrders() {
+				//Clear the table
+				var table =  $('#OrderDataTable');
+				table.empty();
+				const tx = {from: account,to: addr,
+				gas: 45000000,data: mycontract.methods.getAllOrders().encodeABI()};
+				web2conn.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						console.log(result);
+					}
+				});
+			}
+			$('#FetchAllOrders').click(function() {
+				fetchAllOrders();
 			});
 			$('#FetchOrder').click(function() {
 				$('#orders').text('');
 				var _orderId = $('#orderId').val();
-				mydistributorcontract.methods.orders(_orderId).call().then(function(data)
+				mycontract.methods.orders(_orderId).call().then(function(data)
 				{
 					$('#loId').text(data.id);
 					$('#loitem').text(data.itemname);
 					$('#loqty').text(data.quantity);
 					$('#loprice').text(data.price);
+					$('#lostate').text(OrderStateEnum.properties[data.State].name);
+					$('#lonextstate').text(OrderNextStateEnum.properties[data.NextState].name + " By " + OrderNextStateEnum.properties[data.NextState].owner)
 					//$('#lototal').text(data.total);
 					switch(data.State) {
 							case "0":
 								{
-									$('#lostate').text("Order Created");
 									$("#Calculate").attr("disabled", false);
 									$("#CheckCredit").attr("disabled", true);
 								}
 								break;
 								case "1":
 								{
-									$('#lostate').text("Pending Credit Check");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", false);
 								}
 								break;
 								case "2":
 								{
-									$('#lostate').text("Send to Bank");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", false);
 								}
 								break;
 								case "3":
 								{
-									$('#lostate').text("Credit Approved");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", false);
 								}
 								break;
 								case "4":
 								{
-									$('#lostate').text("Order Placed");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", false);
 								}
 								break;
 								case "5":
 								{
-									$('#lostate').text("Order Ready");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", false);
 								}
 								break;
 								case "6":
 								{
-									$('#lostate').text("Order Amount Received");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
 									$("#DeliverOrder").attr("disabled", false);
 								}
 									break;
 								case "7":
 								{	
-									$('#lostate').text("Order Delivered");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
 									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", false);
 								}
 								break;
 								case "8":
 								{
-									$('#lostate').text("Order Verified");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
 									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", false);
 								}
 								break;
 								case "9":
 								{
-									$('#lostate').text("Order Closed");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
 									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", true);
 								}
 								break;
 								case "10":
 								{
-									$('#lostate').text("Order Terminated");
 									$("#Calculate").attr("disabled", true);
 									$("#CheckCredit").attr("disabled", true);
+									$("#ApproveCredit").attr("disabled", true);
 									$("#PlaceOrder").attr("disabled", true);
+									$("#OrderReady").attr("disabled", true);
+									$("#TransferMoney").attr("disabled", true);
 									$("#DeliverOrder").attr("disabled", true);
+									$("#CheckOrder").attr("disabled", true);
+									$("#CloseOrder").attr("disabled", true);
 								}
 								break;
 								default:
@@ -280,7 +393,84 @@
 							}
 				});
 			});
+			$('#PlaceOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: account,to: addr,
+				gas: 45000000,data: mycontract.methods.PlaceOrder(_id).encodeABI()};
+				web2conn.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#PlaceOrder").attr("disabled", true);
+						$("#OrderReady").attr("disabled", false);
+						$('#lcordId').text('Order Placed');
+					}
+				});
+			});
+			
+			$('#DeliverOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: account,to: addr,
+				gas: 45000000,data: mycontract.methods.DeliverOrder(_id).encodeABI()};
+				web2conn.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#DeliverOrder").attr("disabled", true);
+						$("#CheckOrder").attr("disabled", false);
+						$('#lcordId').text('Order Delivered to Retailer');
+					}
+				});
+			});
+			$('#CloseOrder').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: account,to: addr,
+				gas: 45000000,data: mycontract.methods.CloseOrder(_id).encodeABI()};
+				web2conn.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#CloseOrder").attr("disabled", true);
+						$('#lcordId').text('Order Closed..Hurahhh');
+					}
+				});
+			});
+			$('#Calculate').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+			    var _price = $('#lcprice').val();
+				var _discount = $('#lcdiscount').val();
+				const tx = {from: account,to: addr,
+				gas: 4500000,data: mycontract.methods.Calculate(_id,_price,_discount).encodeABI()};
+				web2conn.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#Calculate").attr("disabled", true);
+						$("#CheckCredit").attr("disabled", false);
+						$('#lcordId').text('Discount Applied');
+					}
+				});
+			});
+			$('#CheckCredit').click(function() {
+				$('#lcordId').text('');
+				var _id = $('#orderId').val();
+				const tx = {from: account,to: addr,
+				gas: 45000000,data: mycontract.methods.CheckCredit(_id).encodeABI()};
+				web2conn.eth.sendTransaction(tx).then(function(result, error) {
+					if(error){
+						console.log( "Transaction error" ,error);
+					} else {
+						$("#CheckCredit").attr("disabled", true);
+						$("#ApproveCredit").attr("disabled", false);
+						$('#lcordId').text('Send to Bank');
+					}
+				});
+			});
 		});
-    </script>
+	</script>
 </body>
 </html>
