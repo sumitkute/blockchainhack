@@ -8,8 +8,10 @@ contract RetailerFinance
     address public Bank;
     address public Distributor;
 
-    enum StateType {OrderCreated, PendingCreditCheck, SendtoBank, CreditApproved, OrderPlaced, OrderPickListReady,
+    enum StateType {OrderCreated, DiscountGiven, CreditChecked, CreditApproved, OrderPlaced, OrderReady,
                     OrderAmountReceived, OrderDelivered, OrderChecked, OrderClosed,Terminated }
+    enum NextStateType {CalcuateDiscount, PendingCreditCheck, ApproveCredit, PlaceOrder, ReadyOrderForDelivery,
+                    ReceiveOrderAmount, DelivereOrder, CheckOrder, CloseOrder, Closed, Terminated }
     struct Order {
         uint id;
         string itemname;
@@ -17,6 +19,7 @@ contract RetailerFinance
         uint256 price;
         uint256 total;
         StateType State;
+        NextStateType NextState;
     }
 
     event OrderList(uint, Order);
@@ -36,10 +39,14 @@ contract RetailerFinance
 
     function CreateOrder(string memory itemstr, uint quantity) public
     {
+        if (Retailer != msg.sender)
+        {
+           revert('Only Retailer can create order');
+        }
         numOrders++;
-        //orderId = numOrders++;
         orders[numOrders].id = numOrders;
         orders[numOrders].State = StateType.OrderCreated;
+        orders[numOrders].NextState = NextStateType.CalcuateDiscount;
         // for(uint i = 0; i<_array.length; i++)
         // {
         //    orders[numOrders].items[i] = Item({name:_array[i].name,amount:_array[i].amount});
@@ -48,6 +55,7 @@ contract RetailerFinance
         orders[numOrders].quantity = quantity;
         //orders[numOrders].Retailer = msg.sender;
         //return orders[numOrders].id;
+        
      }
 
     function Terminate(uint orderid) public {
@@ -57,6 +65,7 @@ contract RetailerFinance
             revert('');
         }
         o.State = StateType.Terminated;
+        o.NextState = NextStateType.Terminated;
     }
 
     //Distributor calculates price for the order
@@ -75,14 +84,14 @@ contract RetailerFinance
         }
         //o.price = (o.quantity * uprice) * (1-(discount/100));
         o.price = ((o.quantity * uprice) / 100) * (100 - discount);
-        Distributor = msg.sender;
-        o.State = StateType.PendingCreditCheck;
+        o.State = StateType.DiscountGiven;
+        o.NextState = NextStateType.PendingCreditCheck;
     }
 
     function CheckCredit(uint orderid) public
     {
         Order storage o = orders[orderid];
-        if (o.State != StateType.PendingCreditCheck)
+        if (o.State != StateType.DiscountGiven)
         {
             revert('Not a correct State');
         }
@@ -91,13 +100,14 @@ contract RetailerFinance
             revert('Not a Distributor');
         }
         //need logic to check credit limit
-        o.State = StateType.SendtoBank;
+        o.State = StateType.CreditChecked;
+        o.NextState = NextStateType.ApproveCredit;
     }
 
     function ApproveCredit(uint orderid, uint256 creditlimit) public
     {
         Order storage o = orders[orderid];
-       if (o.State != StateType.SendtoBank)
+       if (o.State != StateType.CreditChecked)
         {
             revert('Not a correct State');
         }
@@ -112,6 +122,7 @@ contract RetailerFinance
         }
 
         o.State = StateType.CreditApproved;
+        o.NextState = NextStateType.PlaceOrder;
     }
 
     function PlaceOrder(uint orderid) public
@@ -127,6 +138,7 @@ contract RetailerFinance
             revert('Not a correct State');
         }
         o.State = StateType.OrderPlaced;
+        o.NextState = NextStateType.ReadyOrderForDelivery;
     }
     function OrderReady(uint orderid) public
     {
@@ -139,13 +151,14 @@ contract RetailerFinance
         {
             revert('Not a Manufacturer');
         }
-        o.State = StateType.OrderPickListReady;
+        o.State = StateType.OrderReady;
+        o.NextState = NextStateType.ReceiveOrderAmount;
     }
 
     function TransferMoney(uint orderid) public
     {
         Order storage o = orders[orderid];
-        if (o.State != StateType.OrderPickListReady)
+        if (o.State != StateType.OrderReady)
         {
             revert('Not a correct State');
         }
@@ -154,6 +167,7 @@ contract RetailerFinance
             revert('Not a Bank');
         }
         o.State = StateType.OrderAmountReceived;
+        o.NextState = NextStateType.DelivereOrder;
     }
     function DeliverOrder(uint orderid) public
     {
@@ -168,6 +182,7 @@ contract RetailerFinance
             revert('Not a correct State');
         }
         o.State = StateType.OrderDelivered;
+        o.NextState = NextStateType.CheckOrder;
     }
     function CheckOrder(uint orderid) public
     {
@@ -181,6 +196,7 @@ contract RetailerFinance
             revert('Not a correct State');
         }
         o.State = StateType.OrderChecked;
+        o.NextState = NextStateType.CloseOrder;
     }
 
     function CloseOrder(uint orderid) public
@@ -195,6 +211,7 @@ contract RetailerFinance
             revert('Not a correct State');
         }
         o.State = StateType.OrderClosed;
+        o.NextState = NextStateType.Closed;
    }
 
    function getAllOrders () public
